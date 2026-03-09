@@ -41,4 +41,4 @@ Tras procesar los datos, estos son los hallazgos para el Sr. Juan:
 - **Recomendación de Venta:** Basado en el balance de ingresos bajos y costos de envío, la recomendación es vender la tienda que presenta el rendimiento más pobre en la Gráfica 1.
 
 ---
-*Análisis técnico realizado por una estudiante de ingeniería de la UPIITA.*
+*Análisis técnico realizado por una estudiante de ingeniería.*
