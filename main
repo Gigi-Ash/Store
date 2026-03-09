@@ -1,0 +1,57 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns # Usamos seaborn para que se vea mas pro
+
+# --- 1. CARGA DE DATOS (Corregida) ---
+# Ojo: la tienda 1 tiene un espasio en el nombre original del zip
+try:
+    tienda1 = pd.read_csv('tienda_1 .csv')
+except:
+    tienda1 = pd.read_csv('tienda_1.csv') # Por si le quitaste el espasio
+
+tienda2 = pd.read_csv('tienda_2.csv')
+tienda3 = pd.read_csv('tienda_3.csv')
+tienda4 = pd.read_csv('tienda_4.csv')
+
+tiendas = [tienda1, tienda2, tienda3, tienda4]
+nombres = ['Tienda 1', 'Tienda 2', 'Tienda 3', 'Tienda 4']
+
+# --- 2. CALCULOS (REQUISITOS) ---
+
+# Ingresos totales por tienda
+ingresos = [t['Precio'].sum() for t in tiendas]
+
+# Calificasiones promedio
+ratings = [t['Calificación'].mean() for t in tiendas]
+
+# Costo de envio promedio
+envios = [t['Costo de envío'].mean() for t in tiendas]
+
+# --- 3. GRAFICAS (MINIMO 3) ---
+plt.figure(figsize=(15, 5))
+
+# Grafica 1: Ingresos Totales (Barras)
+plt.subplot(1, 3, 1)
+plt.bar(nombres, ingresos, color='skyblue')
+plt.title('Ingresos Totales por Tienda')
+plt.ylabel('Ventas ($)')
+
+# Grafica 2: Satisfaksion del Cliente (Barras)
+plt.subplot(1, 3, 2)
+plt.bar(nombres, ratings, color='salmon')
+plt.title('Rating Promedio (Reseñas)')
+plt.ylim(0, 5)
+
+# Grafica 3: Gastos de Envio (Lineas)
+plt.subplot(1, 3, 3)
+plt.plot(nombres, envios, marker='o', color='green')
+plt.title('Costo de Envio Promedio')
+
+plt.tight_layout()
+plt.show()
+
+# --- 4. ANALISIS DE PRODUCTOS ---
+print("--- RESUMEN DE VENTAS ---")
+for i, t in enumerate(tiendas):
+    mas_vendido = t['Producto'].value_counts().idxmax()
+    print(f"{nombres[i]}: Producto estrella -> {mas_vendido}")
